@@ -1,0 +1,135 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "1900ac3f-1d12-4ce1-bcb2-07b8c9230e4c": {
+        "id": "1900ac3f-1d12-4ce1-bcb2-07b8c9230e4c",
+        "parent": null,
+        "name": "sachiii",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "c2384024-b0a2-4451-a6b2-be6ae6b607e5"
+        ],
+        "isRemovable": false,
+        "filePath": "sachiii"
+      },
+      "c2384024-b0a2-4451-a6b2-be6ae6b607e5": {
+        "id": "c2384024-b0a2-4451-a6b2-be6ae6b607e5",
+        "parent": "1900ac3f-1d12-4ce1-bcb2-07b8c9230e4c",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "sachiii/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nconst s3 = new AWS.S3();\n\nexports.handler = function (event, context, callback) {\n    s3.listObjects({\n        'Bucket': 'as2-test-lahiru',\n        'MaxKeys': 10,\n        'Prefix': ''\n    }).promise()\n        .then(data => {\n            console.log(data);           // successful response\n            /*\n            data = {\n                Contents: [\n                    {\n                       ETag: \"\\\"70ee1738b6b21e2c8a43f3a5ab0eee71\\\"\",\n                       Key: \"example1.jpg\",\n                       LastModified: \"<Date Representation>\",\n                       Owner: {\n                          DisplayName: \"myname\",\n                          ID: \"12345example25102679df27bb0ae12b3f85be6f290b936c4393484be31bebcc\"\n                       },\n                       Size: 11,\n                       StorageClass: \"STANDARD\"\n                    },\n                    // {...}\n                ]\n            }\n            */\n        })\n        .catch(err => {\n            console.log(err, err.stack); // an error occurred\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "apigusEast1sachithraAPInameqainduget",
+            "config": {}
+          }
+        ],
+        "testCases": {
+          "89531a1d-166f-43a9-9505-a52cbc993c55": {
+            "id": "89531a1d-166f-43a9-9505-a52cbc993c55",
+            "name": "Test event",
+            "functionId": "c2384024-b0a2-4451-a6b2-be6ae6b607e5",
+            "event": "{\"key1\": \"value1\", \"key2\": \"value2\", \"key3\": \"value3\"}",
+            "eventTemplate": "hello-world"
+          }
+        }
+      }
+    },
+    "rootNode": "1900ac3f-1d12-4ce1-bcb2-07b8c9230e4c",
+    "openFiles": [
+      "c2384024-b0a2-4451-a6b2-be6ae6b607e5"
+    ],
+    "currentFileId": "c2384024-b0a2-4451-a6b2-be6ae6b607e5",
+    "resources": {
+      "apigusEast1sachithraAPInameqainduget": {
+        "name": "apigusEast1sachithraAPInameqainduget",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 1,
+          "apiName": "sachithraAPIname",
+          "apiId": "052p9kjn18",
+          "endpointType": "REGIONAL",
+          "rootResourceId": "zrjp6rdv3b",
+          "existingResources": {
+            "/": "zrjp6rdv3b"
+          },
+          "resourceMode": 0,
+          "resourceName": "qa/indu",
+          "resourcePath": "/qa/indu",
+          "restMethod": "GET",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 1,
+          "stageName": "Test",
+          "stageDeploymentId": "xy360a",
+          "mode": 1
+        }
+      },
+      "s3as2TestLahiru": {
+        "name": "s3as2TestLahiru",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "as2-test-lahiru"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "sachiii",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1574929130113
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "sachiii",
+      "url": "https://github.com/Indunil1992/sachiii"
+    }
+  }
+}
